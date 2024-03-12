@@ -1,0 +1,50 @@
+﻿@model List<FootballerViewModel>
+@{
+    ViewData["Title"] = "Home";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<div class="center">
+    <div>
+        <ul style="list-style-type:none">
+            @foreach(FootballerViewModel item in Model)
+            {
+                <li style="padding-bottom: 50px">
+                    <ul style="list-style-type:none">
+                        <li style="padding-bottom: 10px">              
+                            <strong style="margin-bottom: 10px; font-size: 20px;">@item.Name @item.Surname</strong>
+                        </li>
+                            <li style="padding-bottom: 10px">              
+                            <strong style="margin-bottom: 5px">Gender:</strong>
+                            <p style="margin-bottom: 5px">@item.Sex</p>
+                        </li>
+                            <li style="padding-bottom: 10px">              
+                            <strong style="margin-bottom: 5px">Born date:</strong>
+                            <p style="margin-bottom: 5px">@item.BornDate</p>
+                        </li>
+                            <li style="padding-bottom: 10px">              
+                            <strong style="margin-bottom: 5px">Team:</strong>
+                            <p style="margin-bottom: 5px">@item.TeamName</p>
+                        </li>
+                            <li style="padding-bottom: 10px">              
+                            <strong style="margin-bottom: 5px">Country:</strong>
+                            <p style="margin-bottom: 5px">@item.Country</p>
+                        </li>
+                        <li>
+                            <button class="edit-button" data-id="@item.Id" style="margin-left:20px; border-radius:3px; border-width:1px; width:80px">Edit</button>
+                        </li>
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('.edit-button').click(function() {
+        var id = $(this).data('id');
+        var url = '@Url.Action("Edit", "Footballer")' + '?id=' + id;
+        window.location.href = url;
+    });
+});
+</script>

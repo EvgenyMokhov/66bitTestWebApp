@@ -1,0 +1,51 @@
+﻿@model FootballerViewModel
+@{
+    ViewData["Title"] = "Privacy policy";
+}
+<form asp-controller="Footballer" asp-action="Edit" method="post">
+    <ul style="list-style-type:none">
+        <input type="hidden "asp-for="Id" value="@Model.Id" hidden></input>
+        <li style="padding-bottom: 15px">
+            <p style="margin-bottom: 5px">Enter name</p>
+            <input asp-for="Name" value="@Model.Name" placeholder="Name"></input>
+            <span asp-validation-for="Name"></span>
+        </li>
+        <li style="padding-bottom: 15px">
+            <p style="margin-bottom: 5px">Enter surname</p>
+            <input asp-for="Surname" value="@Model.Surname" placeholder="Surname"></input>
+            <span asp-validation-for="Surname"></span>
+        </li>
+        <li style="padding-bottom: 15px">
+            <p style="margin-bottom: 5px">Select gender</p>
+            <input type="radio" asp-for="Sex" value="Male" style="margin-right:3px">Male</input>
+            <input type="radio" asp-for="Sex" value="Female" style="margin-right:3px;margin-left:30px">Female</input>
+            <span asp-validation-for="Sex" style="margin-left:35px"></span>
+        </li>
+        <li style="padding-bottom: 15px">
+            <p style="margin-bottom: 5px">Enter born date</p>
+            <input asp-for="BornDate" value="@Model.BornDate" placeholder="dd.MM.yyyy"></input>
+            <span asp-validation-for="BornDate"></span>
+        </li>
+        <li style="padding-bottom: 15px"> 
+            <p style="margin-bottom: 5px">Select team</p>
+            <input asp-for="TeamName" value="@Model.TeamName" list="teams" placeholder="Team"></input>
+            <datalist id="teams">
+                @foreach (TeamViewModel item in ViewBag.teams)
+                {
+                    <option value="@item.TeamName">@item.TeamName</option>
+                }
+            </datalist>
+            <span asp-validation-for="TeamName"></span>
+        </li>
+        <li style="padding-bottom: 15px">
+            <p style="margin-bottom: 5px">Select country</p>
+            <select asp-for="Country" value="@Model.Country">
+                <option value="Russia">Russia</option>
+                <option value="USA">USA</option>
+                <option value="Italy">Italy</option>
+            </select>
+            <span asp-validation-for="Country"></span>
+        </li>
+    </ul>
+    <input type="submit" value="Save" style="margin-left:96px"></input>
+</form>
